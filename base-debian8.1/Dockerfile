@@ -19,5 +19,8 @@ RUN adduser --ingroup $GROUP --disabled-password --gecos "" $USER \
     && mkdir /home/$USER/workspace \
     && chown -R $USER:$GROUP /home/$USER/workspace
 
+ADD .gitconfig /home/$USER/
+RUN chown $USER:$GROUP /home/$USER/.gitconfig
+
 
 

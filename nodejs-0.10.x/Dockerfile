@@ -19,7 +19,9 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
     && ln -s /home/$USER/tools/node-v$NODE_VERSION-linux-x64 /home/$USER/tools/nodejs
 
 RUN echo "export PATH=\$PATH:/home/$USER/tools/node-v$NODE_VERSION-linux-x64/bin" >> /home/$USER/.bashrc
+RUN su - $USER -c "/bin/bash -i -c 'npm install -g npm'"
 RUN su - $USER -c "/bin/bash -i -c 'npm install -g node-gyp grunt-cli'"
+RUN su - $USER -c "/bin/bash -i -c 'npm update'"
 
 
 
