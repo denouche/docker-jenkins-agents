@@ -13,6 +13,7 @@ ENV GROUP users
 
 RUN adduser --ingroup $GROUP --disabled-password --gecos "" $USER \
     && echo "$USER:$USER" | chpasswd \
+    && mkdir /var/run/sshd \
     && mkdir -p /home/$USER/tools \
     && chown -R $USER:$GROUP /home/$USER/tools \
     && mkdir /home/$USER/workspace \
