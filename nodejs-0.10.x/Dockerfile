@@ -16,12 +16,12 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
     && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /home/$USER/tools/ \
     && rm "node-v$NODE_VERSION-linux-x64.tar.gz" \
     && chown -R $USER:$GROUP /home/$USER/tools/node-v$NODE_VERSION-linux-x64 \
-    && ln -s /home/$USER/tools/node-v$NODE_VERSION-linux-x64 /home/$USER/tools/nodejs
+    && ln -s /home/$USER/tools/node-v$NODE_VERSION-linux-x64 /home/$USER/tools/nodejs \
+    && echo "export PATH=\$PATH:/home/$USER/tools/node-v$NODE_VERSION-linux-x64/bin" >> /home/$USER/.bashrc
 
-RUN echo "export PATH=\$PATH:/home/$USER/tools/node-v$NODE_VERSION-linux-x64/bin" >> /home/$USER/.bashrc
-RUN su - $USER -c "/bin/bash -i -c 'npm install -g npm'"
-RUN su - $USER -c "/bin/bash -i -c 'npm install -g node-gyp grunt-cli'"
-RUN su - $USER -c "/bin/bash -i -c 'npm update'"
+RUN su - $USER -c "/bin/bash -i -c 'npm install -g npm'" \
+    && su - $USER -c "/bin/bash -i -c 'npm install -g node-gyp grunt-cli'" \
+    && su - $USER -c "/bin/bash -i -c 'npm update'"
 
 
 
