@@ -11,7 +11,6 @@ RUN apt-get install -y \
         make \
         git-core \
         curl \
-        docker.io \
     && apt-get clean
 
 ENV USER jenkins
@@ -23,10 +22,4 @@ RUN useradd --create-home --shell /bin/bash --gid users --groups docker $USER \
     && chown -R $USER:$GROUP /home/$USER/tools \
     && mkdir /home/$USER/workspace \
     && chown -R $USER:$GROUP /home/$USER/workspace
-
-ADD docker-entrypoint.sh /docker-entrypoint.sh
-
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
-
-CMD [ "/bin/bash" ]
 
