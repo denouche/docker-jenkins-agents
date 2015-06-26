@@ -6,6 +6,7 @@ RUN apt-get update \
         openjdk-7-jdk \
         make \
         git-core \
+        curl \
     && apt-get clean
 
 ENV USER jenkins
