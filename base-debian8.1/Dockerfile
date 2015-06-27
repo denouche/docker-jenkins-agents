@@ -16,7 +16,7 @@ RUN apt-get install -y \
 ENV USER jenkins
 ENV GROUP users
 
-RUN useradd --create-home --shell /bin/bash --gid users --groups docker $USER \
+RUN useradd --create-home --shell /bin/bash --gid users $USER \
     && mkdir /var/run/sshd \
     && mkdir -p /home/$USER/tools \
     && chown -R $USER:$GROUP /home/$USER/tools \

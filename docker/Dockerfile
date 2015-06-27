@@ -5,6 +5,8 @@ RUN apt-get update \
         docker.io \
     && apt-get clean
 
+RUN usermod -a -G docker $USER
+
 ADD docker-entrypoint.sh /docker-entrypoint.sh
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
