@@ -1,5 +1,6 @@
 FROM debian:8.1
 
+# Needed to get openjdk-8-jdk
 RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
 
 RUN apt-get update \
@@ -16,10 +17,15 @@ RUN apt-get install -y \
 ENV USER jenkins
 ENV GROUP users
 
-RUN useradd --create-home --shell /bin/bash --gid users $USER \
-    && mkdir /var/run/sshd \
-    && mkdir -p /home/$USER/tools \
-    && chown -R $USER:$GROUP /home/$USER/tools \
-    && mkdir /home/$USER/workspace \
+RUN useradd --create-home --shell /bin/bash --gid users $USER
+
+RUN mkdir -p /var/run/sshd
+
+RUN mkdir -p /home/$USER/tools \
+    && chown -R $USER:$GROUP /home/$USER/tools
+
+RUN mkdir /home/$USER/workspace \
     && chown -R $USER:$GROUP /home/$USER/workspace
+
+EXPOSE 22
 
