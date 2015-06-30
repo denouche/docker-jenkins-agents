@@ -7,24 +7,21 @@ RUN apt-get update \
         python \
     && apt-get clean
 
-ENV USER jenkins
-ENV GROUP users
+USER $USER
 
 ENV NODE_VERSION 0.10.39
 
-RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
+RUN cd \
+    && curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
     && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /home/$USER/tools/ \
     && rm "node-v$NODE_VERSION-linux-x64.tar.gz" \
-    && chown -R $USER:$GROUP /home/$USER/tools/node-v$NODE_VERSION-linux-x64 \
     && ln -s /home/$USER/tools/node-v$NODE_VERSION-linux-x64 /home/$USER/tools/nodejs
 
-USER $USER
 ENV PATH $PATH:/home/$USER/tools/node-v$NODE_VERSION-linux-x64/bin
-WORKDIR /home/jenkins/workspace/
 
 RUN npm install -g npm \
     && npm install -g node-gyp grunt-cli \
     && npm update
 
-
+USER root
 
