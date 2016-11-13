@@ -9,7 +9,7 @@ RUN apt-get update \
 
 USER $USER
 
-ENV NODE_VERSION 6.6.0
+ENV NODE_VERSION 6.9.1
 
 RUN cd \
     && curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
