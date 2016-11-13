@@ -19,9 +19,9 @@ RUN cd \
 
 ENV PATH $PATH:/home/$USER/tools/node-v$NODE_VERSION-linux-x64/bin
 
-RUN npm install -g npm \
+RUN \
     && npm install -g node-gyp grunt-cli \
-    && npm update
+
 
 USER root
 
