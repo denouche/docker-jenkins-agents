@@ -12,7 +12,7 @@ then
         # set default value for my configuration if no environment variable found
         DOCKER_GROUP_ID=113
     fi
-    
+
     echo "Changing docker group id to $DOCKER_GROUP_ID"
     groupmod --gid $DOCKER_GROUP_ID docker
 fi

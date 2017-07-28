@@ -7,17 +7,15 @@ RUN apt-get update \
         python \
     && apt-get clean
 
-USER $USER
-
-ENV NODE_VERSION 6.9.1
+ENV NODE_VERSION 6.11.1
 
 RUN cd \
     && curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
-    && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /home/$USER/tools/ \
+    && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /root/tools/ \
     && rm "node-v$NODE_VERSION-linux-x64.tar.gz" \
-    && ln -s /home/$USER/tools/node-v$NODE_VERSION-linux-x64 /home/$USER/tools/nodejs
+    && ln -s /root/tools/node-v$NODE_VERSION-linux-x64 /root/tools/nodejs
 
-ENV PATH $PATH:/home/$USER/tools/node-v$NODE_VERSION-linux-x64/bin
+ENV PATH $PATH:/root/tools/node-v$NODE_VERSION-linux-x64/bin
 
 RUN npm install -g node-gyp grunt-cli
 

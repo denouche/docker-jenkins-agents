@@ -14,18 +14,9 @@ RUN apt-get install -y \
         curl \
     && apt-get clean
 
-ENV USER jenkins
-ENV GROUP users
-
-RUN useradd --create-home --shell /bin/bash --gid users $USER
-
 RUN mkdir -p /var/run/sshd
-
-RUN mkdir -p /home/$USER/tools \
-    && chown -R $USER:$GROUP /home/$USER/tools
-
-RUN mkdir /home/$USER/workspace \
-    && chown -R $USER:$GROUP /home/$USER/workspace
+RUN mkdir -p /root/tools
+RUN mkdir /root/workspace
 
 EXPOSE 22
 
