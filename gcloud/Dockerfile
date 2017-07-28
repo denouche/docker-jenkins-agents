@@ -5,15 +5,14 @@ RUN apt-get update \
         wget unzip python php5-mysql php5-cli php5-cgi python-openssl \
     && apt-get clean
 
-USER $USER
-WORKDIR /home/$USER
+WORKDIR /root
 
 ###################################
 # From https://github.com/GoogleCloudPlatform/cloud-sdk-docker
 ###################################
 
 # Install the Google Cloud SDK.
-ENV HOME /home/$USER
+ENV HOME /root
 ENV CLOUDSDK_PYTHON_SITEPACKAGES 1
 RUN wget https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.zip && unzip google-cloud-sdk.zip && rm google-cloud-sdk.zip
 RUN google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=$HOME/.bashrc --additional-components app-engine-java app-engine-python app kubectl alpha beta
@@ -32,5 +31,5 @@ ENV PATH $HOME/google-cloud-sdk/bin:$PATH
 USER root
 WORKDIR /root
 
-VOLUME ["/home/$USER/.config"]
+VOLUME ["/root/.config"]
 
