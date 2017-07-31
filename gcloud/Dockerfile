@@ -2,7 +2,7 @@ FROM denouche/jenkins-agents:docker
 
 RUN apt-get update \
     && apt-get install -y -qq --no-install-recommends \
-        wget unzip python php5-mysql php5-cli php5-cgi python-openssl \
+        wget unzip python php7.0-mysql php7.0-cli php7.0-cgi python-openssl \
     && apt-get clean
 
 WORKDIR /root
